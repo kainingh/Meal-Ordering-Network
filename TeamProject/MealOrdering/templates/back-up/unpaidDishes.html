@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+{% for dish in dishes %}
+{{ dish.dish.name }}
+{{ dish.dish.price }}
+{{ dish.number }}
+{% endfor %}
+<a href = "{% url 'pay_money' %}">pay</a>
+{% endblock %}

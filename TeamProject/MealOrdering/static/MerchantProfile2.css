@@ -1,0 +1,271 @@
+﻿*{
+    padding:0px;
+    border:0px;
+}
+body {
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+}
+.firstP,.title,.stars,.info,.firstR,.secondR,.thirdR,.forthR,.menu,.resPhoto,
+.photos,.recommand,.phototitle,.menuPanel,.editPart,.icon{
+    border:1px solid rgba(255, 255, 255, 0.00);
+}
+.menu{
+    width:100%;
+    height:70px;
+
+}
+.icon{
+    margin-top:2%;
+    color:#485a70;
+    font-size:20px;
+}
+.firstP{
+    background:#fcb587;
+    text-align:center;
+}
+.title{
+   font-family: 'Lobster', cursive;
+    font-size:60px;
+    color:white;
+}
+.stars{
+    width:100%;
+    margin-bottom:17%;
+    color:white;
+}
+.info{
+    width:70%;
+    position:absolute;
+    left:40%;
+    top:45%;
+    transform:translate(-50%,-50%);
+}
+.secondR{
+    padding:0px;
+    text-align:center;
+    background:#485a70;
+    height:300px;
+}
+.thirdR{
+ margin:0px;
+ padding:0px;
+ background:#485a70;
+ height:300px;
+}
+.topPart,.botPart{
+    width:100%;
+    height:180px;
+    background:#485a70;
+}
+.botPart{
+    height:220px;
+    background:#485a70;
+}
+.topPart2
+{   
+    width:100%;
+    background:#485a70;  /*#7dd5c9*/
+    text-align:center;
+}
+.topPart2 .time{
+    margin:0px;
+    font-size:20px;
+}
+.topPart2 .hour{
+     margin:0px;
+     margin-top:4%;
+}
+.botPart2{
+    width:100%;
+    background:#485a70;
+    text-align:center;
+}
+.icon2{
+    color:white;
+    font-size:30px;
+    margin-top:10%;
+    margin-bottom:5%;
+}
+.time{
+    width:100%;
+    font-family: 'Fjalla One', sans-serif;
+    color:white;
+    font-size:30px;
+}
+.hour{
+    width:100%;
+    font-family: 'Raleway', sans-serif;
+    color:white;
+    margin-top:5%;
+    font-size:18px;
+}
+.secondR .hour:last-child{
+    margin-bottom:6%;
+}
+.secondR{
+    overflow:hidden;
+}
+.photos{
+    margin-top:25%;
+    width:100%;
+    height:300px;
+}
+.phototitle{
+    height:300px;
+}
+
+.recommand{
+    width:100%;
+    height:300px;
+}
+.menuPart{
+    position:relative;
+}
+.menuPanel{
+    width:80%;
+    margin:15% auto 10%;
+    border:2px solid #7fb1ba;
+}
+.menuLogo{
+    width:15%;
+    position:relative;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    font-family: 'Fjalla One', sans-serif;
+    font-size:40px;
+    padding:5% 0;
+    background-color:white;
+}
+.menuTitle,.menuTitle2{
+    text-align:center;
+    border:1px solid red;
+    margin:15% auto 0;
+    font-family: 'Fjalla One', sans-serif;
+    color:#485a70;
+    font-size:30px;
+}
+.menuTitle{
+    margin-top:0px;
+}
+.meal{
+    width:50%;
+    border:1px solid #7fb1ba;
+    padding:0px;
+    word-wrap: break-word;
+}
+.dishName,.price{
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    color:#485a70;
+}
+.price{
+    float:right;
+}
+.detail{
+    font-family: 'Montserrat', sans-serif;
+
+    margin-top:1%;
+    font-size:18px;
+    color:#fcb587;
+}
+.editPart{
+
+}
+.editPanel{
+
+    width:60%;
+    margin:8% auto 0;
+    text-align:center;
+}
+.add{
+    background-color:#fcb587;
+    color:white;
+    font-family: 'Fjalla One', sans-serif;
+    font-size:30px;
+    padding:0.5% 0;
+}
+.addContent{
+    border:1px solid red;
+    padding:0.5% 0;
+}
+.editInfo{
+
+    width:60%;
+    margin:5% auto 5%;
+
+}
+.leftSide,.rightSide{
+
+    padding:0px;
+    height:100px;
+}
+.profile{
+    border:1px solid red;
+    height:100px;
+}
+.comment{
+    border:1px solid red;
+    height:100px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+}
+.square{
+    border:1px solid red;
+    position:absolute;
+    height:20px;
+    width:20px;
+    left:23%;
+    top:40%;
+    transform:rotate(45deg);
+}
+img{
+    width:100%;
+    height:auto;
+}
+.number{
+    width:50%;
+    margin:0 auto;
+    border:2px solid #7fb1ba;
+    font-family: 'Fjalla One', sans-serif;
+    color:#485a70;
+    font-size:20px;
+}
+.button{
+    width:60%;
+    margin:5% auto;
+    font-family: 'Fjalla One', sans-serif;
+    background-color:#485a70;
+    font-size:20px;
+    color:white;
+}
+.panel{
+    width:80%;
+    float:left;
+    border-right:2px solid #7fb1ba;
+}
+.bag{
+    height:100px;
+    text-align:center;
+    border-top:2px solid #7fb1ba;
+    width:20%;
+    float:right;
+}
+.bag button{
+    font-family: 'Fjalla One', sans-serif;
+    background-color:#485a70;
+    font-size:40px;
+    text-align:center;
+    color:white;
+    padding:5%;
+    width:100%;
+}
+.bag span{
+    font-family: 'Lato', sans-serif;
+    font-size:25px;
+}
+.changeline{
+    word-wrap: break-word;
+}

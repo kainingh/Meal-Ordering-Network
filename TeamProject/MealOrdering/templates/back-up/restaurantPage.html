@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+{% for dish in dishes %}
+<form method = "post" action = "{% url 'order_dish' %}">
+{{ dish.name }}
+{{ dish.price}}
+  <input type = "hidden" name = "dish_id" value = "{{ dish.pk }}">
+  <input type = "text" name = "number">
+  <input type = "submit" text = "make order">
+  {% csrf_token %}
+
+</form>
+  <a href = "{% url 'unpaid_page' %}">go to pay</a>
+{% endfor %}
+{% endblock %}

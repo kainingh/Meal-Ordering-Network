@@ -1,0 +1,124 @@
+﻿*{
+    padding:0px;
+    margin:0px;
+}
+html,body {
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+}
+.leftPart{
+    border:1px red solid;
+    width:20%;
+    height:100%;
+    padding:0px;
+    
+}
+.rightPart{
+    border:1px red solid;
+    width:80%;
+    height:100%;
+    padding:0px;
+    
+}
+.profileInfo{
+    border:1px red solid;
+    width:100%;
+    height:35%;  
+}
+ul{
+    border:1px solid yellow;
+}
+li{
+    border:1px solid red;
+    width:100%;
+    padding:10% 0;
+    text-align:center;
+}
+.navBar{
+    border:1px solid red;
+    position:fixed;
+    width:100%;
+    height:10%;
+}
+.profile,.address,.order,.payment{
+    width:100%;
+    height:80%;
+}
+
+.normalP{
+    border:1px solid green;
+    width:80%;
+    margin:5% auto;
+    padding:2% 0;
+}
+.normalP:first-child{
+    margin:10% auto 0;
+}
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    margin-bottom:0.5%;
+}
+.normalA{
+    border:1px solid green;
+    width:80%;
+    margin:5% auto;
+    padding:2% 0;
+}
+.content,.date,.menuName{
+     font-family: 'Lato', sans-serif;
+     font-size:18px;
+     margin-bottom:1%;
+}
+.inactive{
+    display:none;
+}
+.add{
+  font-family: 'Montserrat', sans-serif;
+  font-size:20px;
+  margin:10% 0 0;
+  width:15%;
+  border:1px solid green;
+  margin-left:60%;
+  text-align:center;
+}
+.float{
+    float:left;
+}
+.addressForm,.paymentForm{
+    margin:10% auto;
+    border:1px solid green;
+    width:80%;
+}
+.addressForm .title,.paymentForm .title{
+    margin-top:2%;
+}
+.line{
+    border-bottom:1px solid red;
+}
+
+.order .normalA{
+    margin-top:10%;
+}
+.date{
+    font-size:12px;
+}
+.menuName{
+    border-top:1px solid black;
+    font-size:15px;
+}
+.ordername{
+    border:1px solid red;
+}
+.menuName span{
+    color:orangered;
+    margin-right:1%;
+}
+.photo{
+    border:1px solid red;
+    width:45%;
+    height:50%;
+    border-radius:100%;
+    margin:30% auto 0;
+}

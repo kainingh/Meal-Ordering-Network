@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>customerProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="/static/customer.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp" ng-controller="validateCtrl">
+    <input type="hidden" name="showPart" value={{showPart}} id="showPart"/>
+
+    <div class="navBar">
+        <div class="col-md-1 col-md-offset-8" ><a href="{% url 'logout' %}">Logout</a></div>
+        <div class="col-md-1" ><a href="{% url 'haystack_search'%}"> Search</a></div>
+        <div class="col-md-1" ><a href="{% url 'restaurant_list' %}">Restaruants</a></div>
+    </div>
+
+    <div class="leftPart col-md-4">
+        <div class="profileInfo ">
+            <div class="photo">
+                <img src="{% url 'get_customer_photo' %}">
+            </div>
+        </div>
+        <ul>
+            <li onclick="show(0)">Profile</li>
+            <li onclick="show(1)">Address</li>
+            <li onclick="show(2)">Payments</li>
+            <li onclick="show(3)">Order</li>
+        </ul>
+    </div>
+    <div class="rightPart col-md-8">
+        <div class="profile">
+            <div class="normalP">
+                <div class="title">Username</div>
+                <div class="content">{{ customer.username }}</div>
+                <div class="title">Phone Number</div>
+                <div class="content">{{ customer.phoneNumber }}</div>
+                <div class="title showPart edit" onclick="toggle(0)">Edit</div>
+                <form class="formPart inactive" action="{% url 'edit_customer' %}" enctype="multipart/form-data" method="post">
+                    <label for="photo" class="content" >Username</label>
+                    <div class="content" >{{ form.username }}</div>
+                    <label for="photo" class="content">Photo</label>
+                    <div class="content" >{{ form.photo }}</div>
+                    <label for="phonenumber" class="content">Phone Number</label>
+                    <div class="content" >{{ form.phoneNumber }}</div>
+                    <input class="button" type="button" value="cancel" onclick="toggle(0)"/>
+                    <input class="button" type="submit" text="submit">
+                    {% csrf_token %}
+                </form>
+            </div>
+           
+        </div>
+        <div class="address inactive">
+            <div class="showPart">
+                <div class="add" onclick="toggle(1)">Add/Edit Address</div>
+                <div class="normalA row">
+                    <div class="col-md-10">
+                        <div class="title">Home</div>
+                        <div class="content">{{ address.address }}</div>
+                        <div class="content">{{ address.city }}</div>
+                        <span class="content">{{ address.state }}</span>
+                        <span class="content">{{ address.zipcode }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="addressForm formPart inactive">
+                <div class="line"></div>
+                <form  name="addressform" method = "post" action = "{% url 'edit_customer_address'%}">
+                    <div class="content">Address (Required)</div>
+                    <span style="color:red" ng-show="addressform.address.$touched && addressform.address.$invalid">
+                        <span ng-show="addressform.address.$error.required">address is required.</span>
+                    </span>
+                    <input type="text" name = "address" class="content" ng-model="address" required/>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="content">City (Required)</div>
+                            <span style="color:red" ng-show="addressform.city.$touched && addressform.city.$invalid">
+                                <span ng-show="addressform.city.$error.required">city is required.</span>
+                            </span>
+                            <input type="text" name = "city" class="content" ng-model="city" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">State (Required)</div>
+                            <span style="color:red" ng-show="addressform.state.$touched && addressform.state.$invalid">
+                                <span ng-show="addressform.state.$error.required">State is required.</span>
+                            </span>
+                            <input type="text" name = "state" class="content" ng-model="state" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Zip (Required)</div>
+                            <span style="color:red" ng-show="addressform.zipcode.$touched && addressform.zipcode.$invalid">
+                                <span ng-show="addressform.zipcode.$error.required">Zip is required.</span>
+                                <span ng-show="addressform.zipcode.$error.maxlength">length:5</span>
+                                <span ng-show="addressform.zipcode.$error.minlength">length:5</span>
+                                <span ng-show="addressform.zipcode.$error.pattern">pattern is wrong</span>
+                            </span>
+                            <input type="text" name = "zipcode" class="content" ng-model="zipcode" ng-minlength="5" ng-maxlength="5" ng-pattern="regex" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="button" type="button" value="Cancel" onclick="toggle(1)"/>
+                            <input class="button" value="Submit" type = "submit" ng-disabled="addressform.city.$invalid ||
+                                        addressform.state.$invalid|| addressform.address.$invalid||
+                                   addressform.zipcode.$invalid"/>
+                        </div>
+                    </div>
+					{% csrf_token %}
+                </form>
+            </div>
+        </div>
+        <div class="payment inactive">
+            <div class="showPart" onclick="toggle(2)">
+                <div class="add">Add/Edit Cards</div>
+                <div class="normalA row">
+                    <div class="col-md-10">
+                        <div class="title">Visa</div>
+                        <div class="content">{{ creditCard.number }}</div>
+                        <div class="content">Expires{{ creditCard.expire }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymentForm formPart inactive">
+                <div class="line"></div>
+
+                <form name="paymentform" method="post" action="{% url 'edit_credit' %}">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="content">Card Number</div>
+                            <span style="color:red" ng-show="paymentform.number.$touched && paymentform.number.$invalid">
+                                <span ng-show="paymentform.number.$error.required">required.</span>
+                                <span ng-show="paymentform.number.$error.maxlength">length:16</span>
+                                <span ng-show="paymentform.number.$error.minlength">length:16</span>
+                                <span ng-show="paymentform.number.$error.pattern">pattern is wrong</span>
+                            </span>
+                            <input type="text" name="number" ng-model="number" ng-minlength="16" ng-maxlength="16" ng-pattern="regex" required/>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Expiration-(MMYY)</div>
+                            <span style="color:red" ng-show="paymentform.expire.$touched && paymentform.expire.$invalid">
+                                <span ng-show="paymentform.expire.$error.required">required.</span>
+                                <span ng-show="paymentform.expire.$error.maxlength">length:4</span>
+                                <span ng-show="paymentform.expire.$error.minlength">length:4</span>
+                                <span ng-show="paymentform.expire.$error.pattern">pattern is wrong</span>
+                            </span>
+                            <input type="text" name="expire" ng-model="expire" ng-minlength="4" ng-maxlength="4" ng-pattern="regex" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">CVV-(123)</div>
+                            <span style="color:red" ng-show="paymentform.cvv.$touched && paymentform.cvv.$invalid">
+                                <span ng-show="paymentform.cvv.$error.required">required.</span>
+                                <span ng-show="paymentform.cvv.$error.maxlength">length:3</span>
+                                <span ng-show="paymentform.cvv.$error.minlength">length:3</span>
+                                <span ng-show="paymentform.cvv.$error.pattern">pattern is wrong</span>
+                            </span>
+                            <input type="text" name="cvv" ng-model="cvv" ng-minlength="3" ng-maxlength="3" ng-pattern="regex" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Billing Zip(12345)</div>
+                            <span style="color:red" ng-show="paymentform.zipcode.$touched && paymentform.zipcode.$invalid">
+                                <span ng-show="paymentform.zipcode.$error.required">required.</span>
+                                <span ng-show="paymentform.zipcode.$error.maxlength">length:5</span>
+                                <span ng-show="paymentform.zipcode.$error.minlength">length:5</span>
+                                <span ng-show="paymentform.zipcode.$error.pattern">pattern is wrong</span>
+                            </span>
+                            <input type="text" name="zipcode" ng-model="zipcode" ng-minlength="5" ng-maxlength="5" ng-pattern="regex" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="button" type="button" value="Cancel" onclick="toggle(2)"/>
+                            <input class="button" type="submit" value="Submit" ng-disabled="paymentform.number.$invalid ||
+                                        paymentform.expire.$invalid|| paymentform.cvv.$invalid||
+                                   paymentform.zipcode.$invalid"/>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                </form>
+
+            </div>
+        </div>
+
+        <div class="order inactive">
+            {% for order in wholeOrders %}
+            <div class="normalA row ">
+               
+                <div class="col-md-7 ordername">
+                    <div class="col-md-10 ordername">
+                        <div class="title">{{order.restaurantName}}</div>
+                        <div class="date">{{order.createTime}}</div>
+                        {% for dish in order.dishes.all %}
+                        <div class="menuName"><span>{{ dish.number }}</span> {{ dish.dish.name }} ${{dish.dish.price}}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-2">
+                        <div class="">${{order.wholeMoney}}</div>
+                    </div>
+                </div>
+                
+                <!--<div class="col-md-3">
+                    <div>Rate&Review</div>
+                </div>-->
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/static/customer.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope) {
+            $scope.regex = /^\+?[0-9]\d*$/
+            '/^\+?[0-9]\d*$/'
+            ///^[0-9]+$/
+        });
+    </script>
+</body>
+</html>

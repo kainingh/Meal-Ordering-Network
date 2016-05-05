@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Homepage.css" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="customer.css" rel="stylesheet" />
+</head>
+<body ng-app="">
+    <div class="container">
+        <div class="title"></div>
+        <div class="bg"></div>
+        <div class="left ">
+            <div class="sidebar">
+                <div class="bar">
+                    <div class="bottombox"></div>
+                    <div class="letter" onclick="llogin()">SIGN IN</div>
+                    <div class="letter" onclick="lregister()">SIGN UP</div>
+                </div>
+                <div class="content">
+                    <div class="login">
+                        <form name="myform" action ="{% url 'login' %}">
+                            <span class="text">USERNAME</span>
+                            <span class="warn" ng-show="myform.cusername.$touched && myform.cusername.$invalid"> name is required</span>
+                            <input type="text" name="{{ form.username.name }}"  ng-model="cusername" required/>
+                            <span class="text" >PASSWORD</span>
+                            <span class="warn" ng-show="myform.cpassword.$touched && myform.cpassword.$invalid"> password is required</span>
+                            <input type="password" name = "{{ form.password.name }}" ng-model="cpassword" required/>
+                            <input class="button" type="submit" value="LOG IN" ng-disabled="myform.cusername.$invalid||myform.cpassword.$invalid">
+							<input type="hidden" name="authen" value="merchant">
+							{% csrf_token %}
+                        </form>
+                    </div>
+                    <div class="register" action = "{% url 'register' %}">
+                        <form name="myregister" action>
+                            <input type="text" placeholder="Username" name="crusername" ng-model="crusername" ng-maxlength="5" required  />
+                            <span ng-show="myregister.crusername.$touched && myregister.crusername.$invalid" > 
+                                <span ng-show="myregister.crusername.$error.required">required</span>
+                                <span ng-show="myregister.crusername.$error.maxlength">max:5</span>
+                            </span>
+
+                            <input type="text" placeholder="Password" name="cpassw" ng-model="cpassw" ng-maxlength="10" required/>
+                            <span>
+                                <span ng-show="myregister.cpassw.$touched && myregister.cpassw.$invalid" >
+                                    <span ng-show="myregister.cpassw.$error.required">required</span>
+                                    <span ng-show="myregister.cpassw.$error.maxlength">max:5</span>
+                            </span>
+                            </span>
+                            <input type="text" placeholder="Confirm Password" name="cconfirmp" ng-model="cconfirmp" required/>
+							<input type="hidden" name="authen" value="merchant">
+                            <span ng-show="myregister.cconfirmp.$touched && myregister.cconfirmp.$invalid">required</span>
+                            <span ng-show="myregister.cconfirmp.$touched&&cconfirmp!=cpassw ">not same</span>
+                            <input type="email" placeholder="E-mail" name="cemail" ng-model="cemail" required/>
+                            <span  ng-show="myregister.cemail.$touched && myregister.cemail.$invalid">
+                                <span ng-show="myregister.cemail.$error.required">required</span>
+                                <span ng-show="myregister.cemail.$error.email">format wrong</span>
+                            </span>
+                                <input class="button" type="submit" ng-disabled=
+                                       "myregister.crusername.$invalid||myregister.cpassw.$invalid||myregister.cconfirmp.$invalid
+                                       ||myregister.cemail.$invalid||cconfirmp!=cpassw" value="SIGN UP">
+									   {% csrf_token %}
+						</form>
+                    </div>
+                </div>
+            </div>
+            <div class="cusbutton" onclick="toggleclassleft()">Entry</div>
+       </div>
+        <div class="right">
+            <div class="sidebar">
+                <div class="bar">
+                   <div class="bottombox"></div>
+                   <div class="letter" onclick="rlogin()">SIGN IN</div>
+                   <div class="letter" onclick="rregister()">SIGN UP</div>
+                </div>
+                <div class="content">
+                    <div class="login" action ="{% url 'login' %}">
+                        <form>
+                            <div class="text">USERNAME</div>
+                            <input type="text" name="{{ form.username.name }}" />
+                            <div class="text">PASSWORD</div>
+                            <input type="text"  name = "{{ form.password.name }}" />
+                            <input class="button" type="submit" value="LOG IN">
+							<input type="hidden" name="authen" value="customer">
+							{% csrf_token %}
+                        </form>
+                    </div>
+                    <div class="register" action = "{% url 'register' %}">
+                        <form>
+                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Password" />
+                            <input type="text" placeholder="Confirm Password" />
+                            <input type="text" placeholder="E-mail" />
+                            <input class="button" type="submit" value="SIGN UP">
+							<input type="hidden" name="authen" value="customer">
+							{% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="cusbutton" onclick="toggleclass()">Entry</div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="Homepage.js"></script>
+</body>
+</html>

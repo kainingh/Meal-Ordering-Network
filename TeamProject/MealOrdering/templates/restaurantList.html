@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>customerProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="/static/public.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="menu container-fluid">
+        <div class="col-md-1 dishName col-md-offset-7"><a href="{% url 'logout'%}">Logout</a></div>
+        <div class="col-md-1 dishName "><a href="{% url 'customer_profile' 0 %}">Profile</a></div>
+        <div class="col-md-1 dishName"><a href="{% url 'haystack_search'%}"> Search</a></div>
+    </div>
+    <div class="panel">
+        <div class="content">All restaraunt</div>
+    </div>
+    {% for restaurant in restaurants %}
+    <div class="panel">
+        <a class="resname" href="{% url 'restaurant_page' restaurant.pk %}">{{ restaurant.name }}</a>
+    </div>
+    {% endfor %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/static/customer.js"></script>
+</body>
+</html>

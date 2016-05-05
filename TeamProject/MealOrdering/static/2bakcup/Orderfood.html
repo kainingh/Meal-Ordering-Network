@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>OrderFood</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="MerchantProfile.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Lato|Lobster|Fjalla+One|Raleway" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="MerchantProfile.js"></script>
+    <link href="Orderfood.css" rel="stylesheet" />
+</head>
+<body ng-app="myShoppingList" ng-controller="myCtrl">
+    <div class="menu"></div>
+
+    <div class="left col-md-9 col-md-offset-3">
+        <div class="firstP">
+            <span class="icon glyphicon glyphicon-ice-lolly-tasted btn-lg" aria-hidden="true"></span>
+            <div class="title" aria-hidden="true">Restaurant Name</div>
+            <div class="stars ">
+                <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="secondR col-md-3">
+                        <span class="icon2 glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <div class="time">Hours</div>
+                        <div class="hour">Mon: 10 AM.-12 PM.</div>
+                        <div class="hour">Tue: 10 AM.-12 PM.</div>
+                        <div class="hour">Wed: 10 AM.-12 PM.</div>
+                        <div class="hour">Thu: 10 AM.-12 PM.</div>
+                        <div class="hour">Fri: 10 AM.-12 PM.</div>
+                        <div class="hour">Sat: 10 AM.-12 PM.</div>
+                        <div class="hour">Sun: 10 AM.-12 PM.</div>
+                    </div>
+                    <div class="thirdR col-md-3">
+                        <div class="topPart2">
+                            <div class="time">Address</div>
+                            <div class="hour">300 39th St</div>
+                            <div class="hour">Pittsburgh, PA 15201</div>
+                            <div class="time">Phone Number</div>
+                            <div class="hour">412-111-111</div>
+                        </div>
+                        <div class="botPart2">
+                            <div class="time">Short Bio</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="editPart" >
+            <div class="menuPart">
+                <div class="menuLogo"></div>
+                <div class="menuPanel">
+                    <div class="menuTitle2 ">-Soup-</div>
+                    <div class="meal col-md-6 "> <!--ng-click="addItem('Chicken Curry','12')"-->
+                        <!-- Button trigger modal -->
+                        <span class="dishName">Chicken Curry</span>
+                        <span class="price">$12</span>
+                        <div class="detail">Egg,sugar,penus,sjeifowj,iefjwe,eqfqe,wdwefwef,wefewf,efwefweW</div>
+                        <button type="button" ng-click="addInfo('Chicken Curry','12')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" >
+                            order
+                        </button>
+
+                    </div>
+                    
+                    
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <span>{{name}}</span>
+                                    <span>${{price}}</span>
+                                    <input type="number" min="1" max="10" ng-pattern="/^[0-9]{1,2}$/" ng-model="number">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addItem(name,price,number)">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meal col-md-6 ">
+                        <span class="dishName">Chicken Curry</span>
+                        <span class="price">$12</span>
+                        <div class="detail">Egg,sugar,penus,sjeifowj,iefjwe,eqfqe,wdwefwef,wefewf,efwefweW/div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="resPhoto">
+            <div class="photos ">
+                <div class="phototitle col-md-3"></div>
+                <div class="photopanel col-md-9 "></div>
+            </div>
+            <div class="recommand">
+                <div class="photopanel col-md-9"></div>
+                <div class="phototitle col-md-3"></div>
+            </div>
+        </div>
+           
+   </div>
+
+        <div class="comments container-fluid">
+            <div class="row">
+                <div class="leftSide col-md-4">
+                    <div class="profile col-md-3"></div>
+                    <div class="comment col-md-9">"I lover this restaurant so much!!!"</div>
+                    <div class="square"></div>
+                </div>
+                <div class="rightSide col-md-4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="bag col-md-3 ">
+        <ul>
+            <li ng-repeat="x in products" >{{x.name}} {{x.price}} {{x.number}} 
+                <span ng-click="removeItem($index)">&times;</span>
+            </li>
+        </ul>
+        
+    </div>
+
+
+    <script>
+        
+        var app = angular.module("myShoppingList", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.products = [];
+
+            $scope.addInfo=function(nameStr,priceStr){
+                $scope.name = nameStr;
+                $scope.price = priceStr;
+            }
+            $scope.addItem = function (nameStr, priceStr,numberStr) {
+                var item = {
+                    name: nameStr,
+                    price: priceStr,
+                    number: numberStr,
+                }
+                $scope.products.push(item);
+            }
+            $scope.removeItem = function (x) {
+                $scope.products.splice(x, 1);
+            }
+        });
+
+    </script>
+
+</body>
+</html>

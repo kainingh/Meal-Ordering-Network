@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="/static/Homepage.css" rel="stylesheet" />
+</head>
+<body ng-app="">
+    <div class="container">
+        <div class="title"></div>
+        <div class="bg"></div>
+        <div class="left ">
+            <div class="sidebar">
+                <div class="bar">
+                    <div class="bottombox"></div>
+                    <div class="letter" onclick="llogin()">SIGN IN</div>
+                    <div class="letter" onclick="lregister()">SIGN UP</div>
+                </div>
+
+                <div class="content">
+                    <!--merchant-->
+                    <div class="login">
+
+                        <form name="myform" method="post" action="{% url 'login' %}">
+							<p class = "erorr">{{ error1 }}</p>
+                            <label for="id_username" class="text">USERNAME</label>
+                            <span style="color:red" ng-show="myform.username.$touched && myform.username.$invalid">
+                                <span ng-show="myform.username.$error.required">Username is required.</span>
+                            </span>
+                            <input max_length="254" name="username" type="text" ng-model="username" required />
+                            <div class="form-group">
+                                <label for="id_password" class="text">PASSWORD</label>
+                                <span style="color:red" ng-show="myform.password.$touched && myform.password.$invalid">
+                                    <span ng-show="myform.password.$error.required">Username is required.</span>
+                                </span>
+                                <input max_length="50" name="password" type="password" ng-model="password" required />
+                            </div>
+                            <input class="button" type="submit" value="LOG IN" ng-disabled="myForm.username.$invalid ||
+                                        myform.password.$invalid">
+                            <input type="hidden" name="authen" value="merchant" />
+
+                            {% csrf_token %}
+                        </form>
+                    </div>
+
+                    <div class="register">
+                        <form name="myregister" method="post" action="{% url 'register' %}">
+
+                            <span style="color:red" ng-show="myregister.username.$touched && myregister.username.$invalid">
+                                <span ng-show="myregister.username.$error.required">required</span>
+                            </span>
+                            <input type="text" placeholder="Username" max_length="254" name="username" ng-model="username" required/>
+
+                            <span style="color:red" ng-show="myregister.password1.$touched && myregister.password1.$invalid">
+                                <span ng-show="myregister.password1.$error.required">required</span>
+                            </span>
+                            <input type="password" placeholder="Password" max_length="50" name="password1" ng-model="password1" required />
+
+                            <span style="color:red" ng-show="myregister.password2.$touched && myregister.password2.$invalid">required</span>
+                            <span style="color:red" ng-show="myregister.password2.$touched&&password1!=password2 ">not same</span>
+                            <input type="password" placeholder="Confirm Password" max_length="50" name="password2" ng-model="password2" required/>
+                            
+                            <span ng-show="myregister.email.$touched && myregister.email.$invalid">
+                                <span style="color:red" ng-show="myregister.email.$error.required">required</span>
+                                <span style="color:red" ng-show="myregister.email.$error.email">format wrong</span>
+                            </span>
+                            <input type="email" placeholder="E-mail" max_length="200" name="email" ng-model="email" required/>
+
+                            <input class="button" type="submit" value="SIGN UP" ng-disabled=
+                                       "myregister.username.$invalid||myregister.password1.$invalid||myregister.password2.$invalid
+                                       ||myregister.email.$invalid||password1!=password2">
+                            <input type="hidden" name="authen" value="merchant">
+
+                            {% csrf_token %}
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cusbutton" onclick="toggleclassleft()">Entry</div>
+        </div>
+        <div class="right">
+            <div class="sidebar">
+                <div class="bar">
+                    <div class="bottombox"></div>
+                    <div class="letter" onclick="rlogin()">SIGN IN</div>
+                    <div class="letter" onclick="rregister()">SIGN UP</div>
+                </div>
+                <div class="content">
+                    <div class="login">
+                        <form name="merchantform" method="post" action="{% url 'login' %}">
+							<p class = "erorr">{{ error2 }}</p>
+                            <div class="text">USERNAME</div>
+                            <span style="color:red" ng-show="merchantform.username.$touched && merchantform.username.$invalid">
+                                <span ng-show="merchantform.username.$error.required">Username is required.</span>
+                            </span>
+                            <input type="text" max_length="254" name="username" ng-model="username" required/>
+                            <div class="text">PASSWORD</div>
+                            <span style="color:red" ng-show="merchantform.password.$touched && merchantform.password.$invalid">
+                                <span ng-show="merchantform.password.$error.required">password is required.</span>
+                            </span>
+                            <input type="password" max_length="50" name="password" ng-model="password" required/>
+
+                            <input class="button" type="submit" value="LOG IN" ng-disabled="merchantform.username.$invalid ||
+                                        merchantform.password.$invalid">
+                            <input type="hidden" name="authen" value="customer">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <div class="register">
+                        <form name="merchantregister" method="post" action="{% url 'register' %}">
+
+                            <span style="color:red" ng-show="merchantregister.username.$touched && merchantregister.username.$invalid">
+                                <span ng-show="merchantregister.username.$error.required">required</span>
+                            </span>
+
+                            <input type="text" placeholder="Username" max_length="254" name="username" ng-model="username" required/>
+
+                            <span style="color:red" ng-show="merchantregister.password1.$touched && merchantregister.password1.$invalid">
+                                <span ng-show="merchantregister.password1.$error.required">required</span>
+                            </span>
+
+                            <input type="password" placeholder="Password" max_length="50" name="password1" ng-model="password1" required/>
+
+                            <span style="color:red" ng-show="merchantregister.password2.$touched && merchantregister.password2.$invalid">required</span>
+                            <span style="color:red" ng-show="merchantregister.password2.$touched&&password1!=password2 ">not same</span>
+
+                            <input type="password" placeholder="Confirm Password" max_length="50" name="password2" ng-model="password2" required/>
+
+                            <span style="color:red" ng-show="merchantregister.email.$touched && merchantregister.email.$invalid">
+                                <span ng-show="merchantregister.email.$error.required">required</span>
+                                <span ng-show="merchantregister.email.$error.email">format wrong</span>
+                            </span>
+
+                            <input type="email" placeholder="E-mail" max_length="200" name="email" ng-model="email" required/>
+
+                            <input class="button" type="submit" value="SIGN UP" ng-disabled=
+                                       "merchantregister.username.$invalid||merchantregister.password1.$invalid||merchantregister.password2.$invalid
+                                       ||merchantregister.email.$invalid||password1!=password2">
+
+                            <input type="hidden" name="authen" value="customer">
+                            {% csrf_token %}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="cusbutton" onclick="toggleclass()">Entry</div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/static/Homepage.js"></script>
+</body>
+</html>

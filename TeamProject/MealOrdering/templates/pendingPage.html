@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Merchant</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="../static/merchant2.css" rel="stylesheet" />
+</head>
+<body ng-app="">
+    <div class="mainPanel outline container-fluid">
+        <div class="name">
+            <h1 class="title">Username's</h1>
+            <h1 class="title">Resteraunt</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 button outline ">Pending Orders</div>
+        </div>
+		
+        
+        <div class="restPanel">
+            {% for order in pendingOrders %}
+            <div class="row outline item">
+                <div class="col-md-2 outline"><img src="{% url 'get_restaurant_photo' restaurant.pk %}"></div>
+                <div class="col-md-6 outline ">
+                    <div><a class="resTitle" href="{% url 'restaurant_profile' restaurant.pk %}">{{ restaurant.name }}</a></div>
+                    <div class="content">{{restaurant.phoneNumber}}</div>
+                    <div class="content">{{ restaurant.description }}</div>
+                </div>
+                <div class="col-md-2 outline">
+                    <div><a class="button" href="/merchant/deleterestaurant/{{restaurant.pk}}">Delete</a></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        function hide() {
+            $("#form").toggleClass("notshown");
+        }
+    </script>
+</body>
+</html>

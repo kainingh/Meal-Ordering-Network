@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{{ customer.username }}
+{{ customer.phoneNumber }}
+{{ customer.address }}
+<img src = "{% url 'get_customer_photo' %}">
+
+<form action = "{% url 'edit_customer' %}" enctype = "multipart/form-data" method = "post">
+	<label for = "photo">username</label>
+	{{ form.username }}
+	<label for = "photo">photo</label>
+	{{ form.photo }}
+	<label for = "phonenumber">number</label>
+	{{ form.phoneNumber }}
+	<label for = "address">address</label>
+	{{ form.address }}	
+	<input type = "submit" text = "submit">
+	{% csrf_token %}
+</form>
+
+{% endblock %}
