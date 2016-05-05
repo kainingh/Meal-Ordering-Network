@@ -1,0 +1,184 @@
+﻿*{
+    padding:0px;
+    margin:0px;
+}
+html,body {
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+}
+.leftPart{
+
+    width:20%;
+    height:100%;
+    padding:0px;
+    background:url(board.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.rightPart{
+
+    width:80%;
+    height:100%;
+    padding:0px;
+    background:#c2cfde;
+    overflow-y:scroll;
+}
+.profileInfo{
+
+    width:100%;
+    height:35%;  
+}
+ul{
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    color:white;
+}
+li{
+
+    width:100%;
+    padding:10% 0;
+    text-align:center;
+}
+li:hover{
+    cursor:pointer;
+}
+.navBar{
+    border:1px solid #7fb1ba;
+    position:fixed;
+    width:100%;
+    height:5%;
+    z-index:1;
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    color:white;
+}
+.profile,.address,.order,.payment{
+    width:100%;
+    height:80%;
+}
+
+.normalP{
+    width:80%;
+    margin:5% auto;
+    padding:2% 0;
+    background-color:white;
+    box-shadow: 0px 25px 26px 0px rgba(0, 0, 0, 0.1);
+
+}
+.normalP:first-child{
+    margin:10% auto 0;
+}
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    margin-bottom:0.5%;
+    background-color:#99cccc;
+    color:white;
+    padding-left:2%;
+    width:20%;
+    position:relative;
+    left:-2%;
+}
+.normalA{
+    width:80%;
+    margin:5% auto;
+    padding:2% 0;
+    background-color:white;
+}
+.content,.date,.menuName{
+     font-family: 'Lato', sans-serif;
+     font-size:25px;
+     margin-bottom:1%;
+     padding-left:2%;
+     color:#485a70;
+}
+.inactive{
+    display:none;
+}
+.add{
+  font-family: 'Montserrat', sans-serif;
+  font-size:25px;
+  margin:10% 0 0;
+  width:15%;
+  margin-left:60%;
+  text-align:center;
+  background-color:#99cccc;
+  color:white;
+  padding:2%;
+}
+.add:hover{
+    cursor:pointer;
+}
+.float{
+    float:left;
+}
+.addressForm,.paymentForm{
+    margin:10% auto;
+    width:80%;
+}
+.addressForm .title,.paymentForm .title{
+    margin-top:2%;
+}
+.order .normalA{
+    margin-top:10%;
+}
+.date{
+    font-size:12px;
+}
+.menuName{
+    border-top:1px solid black;
+    font-size:15px;
+}
+
+.menuName span{
+    color:orangered;
+    margin-right:1%;
+}
+.photo{
+    border:2px solid #7fb1ba;
+    width:45%;
+    height:50%;
+    border-radius:100%;
+    margin:30% auto 0;
+    overflow:hidden;
+}
+.photo img{
+    width:100%;
+    height:auto;
+}
+.paymentForm form{
+    background-color:white;
+    padding:5%;
+}
+.paymentForm input{
+    border:0;
+    border-bottom:2px solid #99cccc; 
+}
+.button{
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    margin:10% 0 0;
+    background-color:#99cccc;
+    color:white;
+    width:50%;
+    float:right;
+}
+.normalP form{
+    margin-top:5%;
+}
+.normalP .button{
+    margin:0;
+    float:left;
+    border:0;
+}
+.addressForm form{
+    padding-top:2%;
+    background:white;
+}
+.addressForm .button {
+    border: 0;
+}
+.edit:hover{
+    cursor:pointer;
+}

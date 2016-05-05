@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>information</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="../static/customer.css" rel="stylesheet" />
+</head>
+<body>
+    <input type="hidden" name="showPart" value={{showPart}} id="showPart" />
+
+    <div class="navBar">
+        <div class="col-md-1 col-md-offset-8"><a href="{% url 'logout' %}">Logout</a></div>
+        <div class="col-md-1">Search</div>
+        <div class="col-md-1"><a href="{% url 'restaurant_list' %}">SearchList</a></div>
+    </div>
+
+    <div class="rightPart col-md-8">
+        <div class="profile">
+            <div class="normalP">
+                <div class="title">USERNAME</div>
+                <div class="content">{{ customer.username }}</div>
+                <div class="title">Phone Number</div>
+                <div class="content">{{ customer.phoneNumber }}</div>
+                <div class="content showPart" onclick="toggle(0)">Edit</div>
+                <form class="formPart inactive" action="{% url 'edit_customer' %}" enctype="multipart/form-data" method="post">
+                    <label for="photo" class="content">Username</label>
+                    <div class="content">{{ form.username }}</div>
+                    <label for="photo" class="content">Photo</label>
+                    <div class="content">{{ form.photo }}</div>
+                    <label for="phonenumber" class="content">Phone Number</label>
+                    <div class="content">{{ form.phoneNumber }}</div>
+                    <input class="button" type="button" value="cancel" onclick="toggle(0)" />
+                    <input class="button" type="submit" text="submit">
+                    {% csrf_token %}
+                </form>
+            </div>
+            <div class="normalP">
+                <div class="title">Comments</div>
+                <div class="comment">
+                    <div class="col-md-4">1</div>
+                    <div class="col-md-8">“I got the delice de pistache, croissant, pain de chocolat, and and almond croissant.”</div>
+                </div>
+            </div>
+        </div>
+        <div class="address inactive">
+            <div class="showPart">
+                <div class="add" onclick="toggle(1)">Add/Edit Address</div>
+                <div class="normalA row">
+                    <div class="col-md-10">
+                        <div class="title">Home</div>
+                        <div class="content">{{ address.address }}</div>
+                        <div class="content">{{ address.city }}</div>
+                        <span class="content">{{ address.state }}</span>
+                        <span class="content">{{ address.zipcode }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="addressForm formPart inactive">
+                <div class="line"></div>
+                <form method="post" action="{% url 'edit_customer_address'%}">
+                    <div class="content">Address (Required)</div>
+                    <input type="text" name="address" class="content" />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="content">City (Required)</div>
+                            <input type="text" name="city" class="content" />
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">State (Required)</div>
+                            <input type="text" name="state" class="content" />
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Zip (Required)</div>
+                            <input type="text" name="zipcode" class="content" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="button" type="button" value="Cancel" onclick="toggle(1)" />
+                            <input class="button" value="Submit" type="submit" />
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+        <div class="payment inactive">
+            <div class="showPart" onclick="toggle(2)">
+                <div class="add">Add/Edit Cards</div>
+                <div class="normalA row">
+                    <div class="col-md-10">
+                        <div class="title">Visa</div>
+                        <div class="content">{{ creditCard.number }}</div>
+                        <div class="content">Expires{{ creditCard.expire }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymentForm formPart inactive">
+                <div class="line"></div>
+
+                <form method="post" action="{% url 'edit_credit' %}">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="content">Card Number</div>
+                            <input type="text" name="number" />
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Expiration-(MM/YY)</div>
+                            <input type="text" name="expire" />
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">CVV-(123)</div>
+                            <input type="text" name="cvv" />
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Billing Zip(12345)</div>
+                            <input type="text" name="zipcode" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="button" type="button" value="Cancel" onclick="toggle(2)" />
+                            <input class="button" type="submit" value="Submit" />
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                </form>
+
+            </div>
+        </div>
+
+        <div class="order inactive">
+            <div class="normalA row ">
+                {% for dish in historyDishes %}
+                {{ dish.dish.name }}
+                {{ dish.namber }}
+                {{ dish.createTime }}
+                {% endfor %}
+                <div class="col-md-7 ordername">
+                    <div class="col-md-10 ordername">
+                        <div class="title">Chengdu Gourmet</div>
+                        <div class="date">March 28, 2016</div>
+                        <div class="date">DELIVERY to</div>
+                        <div class="menuName"><span>1</span> C2. Diced Chicken with Dried Pepper Chongqing-Style $13.95</div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="title">$30</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>Rate&Review</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="../static/customer.js"></script>
+</body>
+</html>
+

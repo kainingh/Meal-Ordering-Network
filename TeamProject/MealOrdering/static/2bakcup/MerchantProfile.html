@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MerchantProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="MerchantProfile.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Lato|Lobster|Fjalla+One|Raleway" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="menu"></div>
+    <div class="firstP">
+        <span class="icon glyphicon glyphicon-ice-lolly-tasted btn-lg" aria-hidden="true"></span>
+        <div class="title" aria-hidden="true">{{restaurant.name}}</div>
+        <div class="stars ">
+            <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="firstR col-md-3">
+                    <div class="topPart"></div>
+                    <div class="botPart"></div>
+                </div>
+                <div class="secondR col-md-3">
+                    <img src="{% url 'get_restaurant_photo' restaurant.pk %}">
+                </div>
+                <div class="thirdR col-md-3">
+                    <div class="topPart2">
+                        <div class="time">Address</div>
+                        <div class="hour">{{restaurant.address}}</div>
+                        <div class="time">Phone Number</div>
+                        <div class="hour">{{restaurant.phoneNumber}}</div>
+                    </div>
+                    <div class="botPart2">
+                        <div class="time">Bio</div>
+                        <div class="hour">{{restaurant.description}}</div>
+                    </div>
+                    
+                </div>
+                <div class="forthR col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="editPart">
+        <div class="menuPart">
+            <div class="menuLogo"></div>
+            <div class="menuPanel">
+                <!--<div class="menuTitle2 ">-Soup-</div>-->
+                {% for dish in dishes %}
+                <div class="meal col-md-6">
+                    <div class="col-md-4">
+                        <span class="dishName">{{ dish.name }}</span>
+                        <span class="price">${{ dish.price }}</span>
+                        <div class="detail">{{ dish.description }}</div>
+                    </div>
+                    <div class="col-md-2">
+                        <form method="post" action="{% url 'post_dish'%}">
+                            <input type="hidden" value={{dish.pk}}/>
+                            <input type="submit" value="delete"/>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <form method = "post" action = "{% url 'post_dish'%}">
+                <div>
+                    <label for="name">Dish Name:</label>
+                    <input id="dish_name" max_length="254" name="name" type="text">
+                </div>
+                <div>
+                    <label for="price"></label>
+                    <input id="price" max_length="50" name="price" type="text">
+                </div>
+                <div>
+                    <textarea cols="125" rows="5" type="text" name="description"></textarea>
+                </div>
+                <input type="hidden" name="restaurant_id" value="{{ restaurant.pk }}">
+                <input type="submit" value="submit" />
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+
+    <div class="comments container-fluid">
+        <div class="row">
+            {% for comment in comments %}
+            <div class="leftSide col-md-4">
+                <div class="profile col-md-3"></div>
+                <div class= "comment col-md-9">
+                <p>{{comments.commenter}}</p>
+                <p>{{comments.createTime}}</p>
+                <p>{{comment.content}}</p>
+                </div>
+                <div class="square"></div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="MerchantProfile.js"></script>
+    
+</body>
+</html>

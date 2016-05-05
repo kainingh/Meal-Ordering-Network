@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <title>Payment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Lato|Lobster|Fjalla+One|Raleway" rel="stylesheet" type="text/css">
+    <link href="/static/Payment.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row outline navbar">
+        <div class="col-md-1 col-md-offset-10 title2"><a href="{% url 'logout' %}">Logout </a></div>
+        <div class="col-md-1 title2"><a href="{% url 'customer_profile' 0  %}">Profile</a></div>
+    </div>
+    <div class="orderPanel container">
+        <div class="row">
+            <div class="col-md-8 outline title">ITEM</div>
+            <div class="col-md-2 outline title">QUANTITY</div>
+            <div class="col-md-2 outline title">PRICE</div>
+        </div>
+        {% for dish in dishes %}
+        <div class="row outline order">
+            <div class="col-md-8">
+                <div class="content">{{ dish.dish.name }}</div>
+                <div class="content2">qweewoij qwiuqowie wqoeiiqw qwe poqwoei poiqwe poiqwe oiuqwe poipqw qwoiuq</div>
+            </div>
+            <div class="col-md-2 content">
+                <div>{{ dish.number }}</div>
+            </div>
+            <div class="col-md-2 content">
+                <div>${{ dish.dish.price }}</div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row outline title">Total:${{wholeMoney}}</div>
+        <div class="row outline">    
+            <div class="content">UserName</div>
+            <div class="content2">{{customer.username}}</div>
+            <div class="content">Deliver to</div>
+            <div class="content2">
+                <span >{{ address.address }}</span>
+                <span >{{ address.city }}</span>
+                <span >{{ address.state }}</span>
+                <span >{{ address.zipcode }}</span>
+            </div>
+            <div class="content">Card Number</div>
+            <div class="content2">{{creditCard.number}}</div>
+            <div class="content">Phone Number</div>
+            <div class="content2">{{customer.phoneNumber}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 title cancel"><a href="{% url 'restaurant_page' restaurantId %}">Cancel</a></div>
+            <div class="col-md-6 title"><a href="{% url 'pay_money' restaurantId %}">Pay</a></div>
+        </div>
+    </div>
+
+</body>
+</html>
+

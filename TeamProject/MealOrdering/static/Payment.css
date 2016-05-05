@@ -1,0 +1,65 @@
+﻿*{
+    padding:0px;
+    border:0px;
+}
+html,body {
+   width:100%;
+   height:100%;
+   overflow-x:hidden; 
+}
+.navbar{
+    margin-bottom:5%;
+    background:#7fb1ba;
+
+}
+.orderPanel{
+    border:1px solid red;
+    width:60%;
+    margin:0 auto;
+}
+.outline{
+    border:1px solid red;
+    padding:0px;
+}
+.payWays{
+    border:1px solid red;
+    width:60%;
+    margin:5% auto;
+}
+.title{
+    font-family: 'Fjalla One', sans-serif;
+    color:white;
+    font-size:20px;
+    background:#485a70;
+    text-align:center;
+}
+.content,.content2{
+    font-family: 'Montserrat', sans-serif;
+    font-size:18px;
+    margin-top:1%;
+}
+.order{
+    padding:2% 0;
+}
+.content2{
+    font-size:15px;
+}
+form{
+    padding-bottom:5%;
+}
+input{
+    border-bottom:1px solid red;
+}
+.title2{
+    padding-top:1%;
+    font-family: 'Fjalla One', sans-serif;
+    color:#485a70;
+    font-size:20px;
+    color:white;
+}
+a{
+    color:white;
+}
+.cancel:hover{
+    cursor:pointer;
+}

@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>customerProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="/static/infomation.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp" ng-controller="validateCtrl" >
+    <div class="navBar">
+        <div class="col-md-1 col-md-offset-8"><a href="{% url 'logout' %}">Logout</a></div>
+    </div>
+
+    <div class="rightPart col-md-12">
+        <form name="infoForm" action="{% url 'add_information' %}" enctype="multipart/form-data" method="post">
+            <div class="profile">
+                <div class="normalP">
+                    <div class="formPart">
+                        <label for="photo" class="title">Username</label>
+                        <div class="content">{{ form.username }}</div>
+                        <label for="photo" class="title">Photo</label>
+                        <div class="content">{{ form.photo }}</div>
+                        <label for="phonenumber" class="title">Phone Number</label>
+                        <div class="content">{{ form.phoneNumber }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="address ">
+                <div class="addressForm formPart ">
+                    <div>
+                        <div class="title">Address Information</div>
+                        <div class="form">
+                            <div class="content">Address (Required)</div>
+                            <div style="color:red" ng-show="infoForm.address.$touched && infoForm.address.$invalid">
+                                <span ng-show="infoForm.address.$error.required">required.</span>
+                            </div>
+                            <input type="text" name="address" class="content" ng-model="address" required/>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="content">City (Required)</div>
+                                    <span style="color:red" ng-show="infoForm.city.$touched && infoForm.city.$invalid">
+                                        <span ng-show="infoForm.city.$error.required">required.</span>
+                                    </span>
+                                    <input type="text" name="city" class="content" ng-model="city" required/>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="content">State (Required)</div>
+                                    <span style="color:red" ng-show="infoForm.state.$touched && infoForm.state.$invalid">
+                                        <span ng-show="infoForm.state.$error.required">required.</span>
+                                    </span>
+                                    <input type="text" name="state" class="content" ng-model="state" required/>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="content">Zip (Required)</div>
+                                    <span style="color:red" ng-show="infoForm.zipcode.$touched && infoForm.zipcode.$invalid">
+                                        <span ng-show="infoForm.zipcode.$error.required">required.</span>
+                                        <span ng-show="infoForm.zipcode.$error.maxlength">length:5</span>
+                                        <span ng-show="infoForm.zipcode.$error.minlength">length:5</span>
+                                        <span ng-show="infoForm.zipcode.$error.pattern">pattern is wrong</span>
+                                    </span>
+                                    <input type="text" name="zipcode" class="content" ng-model="zipcode" ng-minlength="5" ng-maxlength="5" ng-pattern="regex" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymentForm formPart">
+                <div class="title">Card Information</div>
+                <div class="form">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="content">Card Number</div>
+                            <div style="color:red" ng-show="infoForm.number.$touched && infoForm.number.$invalid">
+                                <span ng-show="infoForm.number.$error.required">required.</span>
+                                <span ng-show="infoForm.number.$error.maxlength">length:16</span>
+                                <span ng-show="infoForm.number.$error.minlength">length:16</span>
+                                <span ng-show="infoForm.number.$error.pattern">pattern is wrong</span>
+                            </div>
+                            <input type="text" name="number" ng-model="number" ng-minlength="16" ng-maxlength="16" ng-pattern="regex" required/>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Expiration-(MMYY)</div>
+                            <div style="color:red" ng-show="infoForm.expire.$touched && infoForm.expire.$invalid">
+                                <span ng-show="infoForm.expire.$error.required">required.</span>
+                                <span ng-show="infoForm.expire.$error.maxlength">max:4</span>
+                                <span ng-show="infoForm.expire.$error.minlength">max:4</span>
+                                <span ng-show="infoForm.expire.$error.pattern">pattern is wrong</span>
+                            </div>
+                            <input type="text" name="expire" ng-model="expire" ng-minlength="4" ng-maxlength="4" ng-pattern="regex" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">CVV-(123)</div>
+                            <div style="color:red" ng-show="infoForm.cvv.$touched && infoForm.cvv.$invalid">
+                                <span ng-show="infoForm.cvv.$error.required">required.</span>
+                                <span ng-show="infoForm.cvv.$error.maxlength">length:3</span>
+                                <span ng-show="infoForm.cvv.$error.minlength">length:3</span>
+                                <span ng-show="infoForm.cvv.$error.pattern">pattern is wrong</span>
+                            </div>
+                            <input type="text" name="cvv" ng-model="cvv" ng-minlength="3" ng-maxlength="3" ng-pattern="regex" required/>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="content">Billing Zip(12345)</div>
+                            <div style="color:red" ng-show="infoForm.zipcode1.$touched && infoForm.zipcode1.$invalid">
+                                <span ng-show="infoForm.zipcode1.$error.required">required.</span>
+                                <span ng-show="infoForm.zipcode1.$error.maxlength">length:5</span>
+                                <span ng-show="infoForm.zipcode1.$error.minlength">length:5</span>
+                                <span ng-show="infoForm.zipcode1.$error.pattern">pattern is wrong</span>
+                            </div>
+                            <input type="text" name="zipcode1" ng-model="zipcode1" ng-minlength="5" ng-maxlength="5" ng-pattern="regex" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <input class="button" value="Submit" type="submit" ng-disabled="infoForm.address.$invalid ||
+                                        infoForm.city.$invalid || infoForm.state.$invalid 
+                       || infoForm.zipcode.$invalid|| 
+                       infoForm.number.$invalid || infoForm.expire.$invalid||
+                       infoForm.cvv.$invalid ||infoForm.zipcode1.$invalid "/>
+            </div>
+            {% csrf_token %}
+        </form>
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope) {
+            $scope.regex = /^\+?[0-9]\d*$/
+        });
+    </script>
+</body>
+</html>

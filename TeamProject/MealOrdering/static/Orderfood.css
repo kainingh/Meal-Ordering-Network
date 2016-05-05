@@ -1,0 +1,31 @@
+﻿*{
+    padding:0px;
+    margin:0px;
+}
+body {
+}
+
+.photos{
+  margin-top:0px;
+}
+.editPart{
+  margin-top:15%;
+}
+.left{
+  width:80%;
+}
+.info{
+    width:70%;
+    position:absolute;
+    left:50%;
+    top:22%;
+    transform:translate(-50%,-50%);
+}
+.bag{
+   border:1px solid green;
+   position:fixed;
+   height:20%;
+}
+input{
+    border:1px solid red;
+}

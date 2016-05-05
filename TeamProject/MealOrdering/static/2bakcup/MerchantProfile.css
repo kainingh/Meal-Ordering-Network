@@ -1,0 +1,224 @@
+﻿*{
+    padding:0px;
+    border:0px;
+}
+body {
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+}
+.firstP,.title,.stars,.info,.firstR,.secondR,.thirdR,.forthR,.menu,.resPhoto,
+.photos,.recommand,.phototitle,.menuPanel,.editPart,.icon{
+    border:1px solid red;
+}
+.menu{
+    width:100%;
+    height:70px;
+}
+.icon{
+    margin-top:2%;
+    color:#485a70;
+    font-size:20px;
+}
+.firstP{
+    background:#fcb587;
+    text-align:center;
+}
+.title{
+   font-family: 'Lobster', cursive;
+    font-size:40px;
+    
+    color:white;
+}
+.stars{
+    width:100%;
+    margin-bottom:17%;
+    color:white;
+}
+.info{
+    width:70%;
+    position:absolute;
+    left:50%;
+    top:72%;
+    transform:translate(-50%,-50%);
+}
+.firstR,.forthR{
+    height:400px;
+    padding:0px;
+}
+.secondR{
+    padding:0px;
+    text-align:center;
+    background-image:url(art/board.png);
+    background-size:cover;
+}
+.thirdR{
+ margin:0px;
+ padding:0px;
+}
+.forthR{
+    background:#485a70;
+}
+.topPart,.botPart{
+    width:100%;
+    height:180px;
+    background:#485a70;
+}
+.botPart{
+    height:220px;
+    background:#33aaae;
+}
+.topPart2
+{   
+    width:100%;
+    background:#33aaae;  /*#7dd5c9*/
+    text-align:center;
+}
+.topPart2 .time{
+    margin:0px;
+    font-size:20px;
+}
+.topPart2 .hour{
+     margin:0px;
+     margin-top:4%;
+}
+.botPart2{
+    width:100%;
+    background:#fcb587;
+    text-align:center;
+}
+.icon2{
+    color:white;
+    font-size:30px;
+    margin-top:10%;
+    margin-bottom:5%;
+}
+.time{
+    width:100%;
+    font-family: 'Fjalla One', sans-serif;
+    color:white;
+    font-size:30px;
+}
+.hour{
+    width:100%;
+    font-family: 'Raleway', sans-serif;
+    color:white;
+    margin-top:5%;
+    font-size:18px;
+}
+.secondR .hour:last-child{
+    margin-bottom:6%;
+}
+.photos{
+    margin-top:25%;
+    width:100%;
+    height:300px;
+}
+.phototitle{
+    height:300px;
+}
+
+.recommand{
+    width:100%;
+    height:300px;
+}
+.menuPart{
+    position:relative;
+}
+.menuPanel{
+    width:80%;
+    margin:10% auto 10%;
+}
+.menuLogo{
+    border:1px solid yellow;
+    width:15%;
+    position:absolute;
+    left:50%;
+    top:20%;
+    transform:translate(-50%,-50%);
+    height:200px;
+}
+.menuTitle,.menuTitle2{
+    text-align:center;
+    border:1px solid red;
+    margin:15% auto 0;
+    font-family: 'Fjalla One', sans-serif;
+    color:#485a70;
+    font-size:30px;
+}
+.menuTitle{
+    margin-top:0px;
+}
+.meal{
+    width:50%;
+    border:1px solid red;
+    padding:0px;
+    word-wrap: break-word;
+}
+.dishName,.price{
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    color:#485a70;
+}
+.price{
+    float:right;
+}
+.detail{
+    font-family: 'Montserrat', sans-serif;
+    border:1px solid yellow;
+    margin-top:1%;
+    font-size:15px;
+    color:#fcb587;
+}
+.editPart{
+
+}
+.editPanel{
+    border:1px solid yellow;
+    width:60%;
+    margin:8% auto 0;
+    text-align:center;
+}
+.add{
+    background-color:#fcb587;
+    color:white;
+    font-family: 'Fjalla One', sans-serif;
+    font-size:30px;
+    padding:0.5% 0;
+}
+.addContent{
+    border:1px solid red;
+    padding:0.5% 0;
+}
+.editInfo{
+    border:1px solid red;
+    width:60%;
+    margin:5% auto 5%;
+
+}
+.leftSide,.rightSide{
+    border:1px solid red;
+    padding:0px;
+    height:100px;
+}
+.profile{
+    border:1px solid red;
+    height:100px;
+}
+.comment{
+    border:1px solid red;
+    height:100px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+}
+.square{
+    border:1px solid red;
+    position:absolute;
+    height:20px;
+    width:20px;
+    left:23%;
+    top:40%;
+    transform:rotate(45deg);
+
+}
+

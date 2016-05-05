@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MerchantProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Lato|Lobster|Fjalla+One|Raleway" rel="stylesheet" type="text/css">
+    <link href="/static/MerchantProfile.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp" ng-controller="validateCtrl">
+    <div class="menu container-fluid">
+        <div class="col-md-1 dishName col-md-offset-10"><a href="{% url 'logout'%}">Logout</a></div>
+        <div class="col-md-1 dishName "><a href="{% url 'merchant_profile'%}">Merchant</a></div>
+    </div>
+    <div class="firstP">
+        
+        <div class="title" aria-hidden="true">{{restaurant.name}}</div>
+        <div class="stars ">
+            <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star btn-lg" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="firstR col-md-3">
+                </div>
+                <div class="secondR col-md-3">
+                    <img src="{% url 'get_restaurant_photo' restaurant.pk %}">
+                </div>
+                <div class="thirdR col-md-3">
+                    <div class="topPart2">
+                        <div class="time">Address</div>
+                        <div class="hour">{{address.address}}</div>
+                        <div class="hour">{{address.city}}-{{address.state}}-{{address.zipcode}}</div>
+                        <div class="time">Phone Number</div>
+                        <div class="hour">{{restaurant.phoneNumber}}</div>
+                    </div>
+                    <div class="botPart2">
+                        <div class="time">Bio</div>
+                        <div class="hour changeline">{{restaurant.description}}</div>
+                    </div>
+                    
+                </div>
+                <div class="forthR col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="editPart">
+        <div class="menuPart">
+            <div class="menuPanel">
+                <div class="menuLogo ">Menu</div>
+                <!--<div class="menuTitle2 ">-Soup-</div>-->
+                {% for dish in dishes %}
+                <div class="meal col-md-12">
+                    <div class="col-md-1">
+                        <a class="dishName" href="{% url 'delete_dish' dish.pk restaurant.pk %}">X</a>
+                    </div>
+                    <div class="col-md-11">
+                        <span class="dishName">{{ dish.name }}</span>
+                        <span class="price">${{ dish.price }}</span>
+                        <div class="detail">{{ dish.description }}</div>
+						
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div >
+            <form name="menuForm" method = "post" action = "{% url 'post_dish'%}">
+				<p class = "error">{{ error }}</p>
+                <div>
+                    <label for="name" class="dishName">Dish Name:</label>
+                    <div>
+                        <div style="color:red" ng-show="menuForm.name.$touched && menuForm.name.$invalid">
+                            <span ng-show="menuForm.name.$error.required">Dishname is required.</span>
+                        </div>
+                        <input class="outline inputArea" id="dish_name" max_length="254" name="name" type="text" ng-model="name" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="price" class="dishName">Price:</label>
+                    <div>
+                        <div style="color:red" ng-show="menuForm.price.$touched && menuForm.price.$invalid">
+                            <span ng-show="menuForm.price.$error.required">Price is required.</span>
+                            <span ng-show="menuForm.price.$error.pattern">pattern is wrong</span>
+                        </div>
+                        <input class="outline inputArea" id="price" max_length="5" name="price" type="text" ng-model="price" ng-pattern="regex" required>
+                    </div>
+                </div>
+                <div>
+                   <div class="dishName">Intro:</div>
+                
+                    <textarea class="outline" cols="125" rows="5" type="text" name="description" ></textarea>
+                </div>
+                <input type="hidden" name="restaurant_id" value="{{ restaurant.pk }}">
+
+                <input class="button" type="submit" value="Add Dish" ng-disabled="menuForm.name.$invalid ||
+                                        menuForm.price.$invalid "/>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+
+    <div class="comments container-fluid">
+        <div class="row">
+            {% for comment in comments %}
+            <div class="leftSide col-md-4">
+                <div class="profile col-md-3"></div>
+                <div class= "comment col-md-9">
+                <p>{{comments.commenter}}</p>
+                <p>{{comments.createTime}}</p>
+                <p>{{comment.content}}</p>
+                </div>
+                <div class="square"></div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope) {
+            $scope.regex = /^[0-9]{1,5}(\.\d+)?$/
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Merchant</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="/static/merchant2.css" rel="stylesheet" />
+</head>
+<body ng-app="">
+    <div class="mainPanel outline container-fluid">
+        <div class="name">
+            <h1 class="title">Username's</h1>
+            <h1 class="title">Resteraunt</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 button outline "><a href="{% url 'logout'%}">Logout</a></div>
+            <div class="col-md-6 button outline " onclick="hide()">Add Resteraunt</div>
+        </div>
+		
+        <form name="infoForm" class="outline notshown" id="form" method = "post" enctype="multipart/form-data" action = "{% url 'create_restaurant'%}">
+		<p class = "error" >{{ error }}</p>
+            <div class="content">Resteraunt Name</div>
+            {{ form.name }}
+            <div class="content">Phone Number</div>
+            {{ form.phoneNumber }}
+            <div class="content">Photo</div>
+            <div class="photoPlace">{{ form.photo }}</div>
+            <div class="content">Description</div>
+            {{ form.description }}
+			<div class="content">Address</div>
+
+            <div class="content">Address</div>
+            <span style="color:red" ng-show="infoForm.address.$touched && infoForm.address.$invalid">
+                <span ng-show="infoForm.address.$error.required">address is required.</span>
+            </span>
+            <input type="text" name="address" class="content" ng-model="address" required/>
+            <span style="color:red" ng-show="infoForm.city.$touched && infoForm.city.$invalid">
+                <span ng-show="infoForm.city.$error.required">City is required.</span>
+            </span>
+            <div class="content">City</div>
+            <input type="text" name="city" class="content" ng-model="city" required/>
+
+            <span style="color:red" ng-show="infoForm.state.$touched && infoForm.state.$invalid">
+                <span ng-show="infoForm.state.$error.required">City is required.</span>
+            </span>
+            <div class="content">State</div>
+            <input type="text" name="state" class="content" ng-model="state" required/>
+
+            <span style="color:red" ng-show="infoForm.zipcode.$touched && infoForm.zipcode.$invalid">
+                <span ng-show="infoForm.zipcode.$error.required">zipcode is required.</span>
+                <span ng-show="infoForm.zipcode.$error.maxlength">length:5</span>
+                <span ng-show="infoForm.zipcode.$error.minlength">length:5</span>
+                <span ng-show="infoForm.zipcode.$error.pattern">pattern is wrong</span>
+            </span>
+            <div class="content">Zipcode</div>
+            <input type="text" name="zipcode" class="content" ng-model="zipcode" ng-minlength="5" ng-maxlength="5" ng-pattern="/^\+?[0-9]\d*$/" required/>
+
+            <div><input type="submit" value="submit" class="button" ng-disabled="infoForm.address.$invalid ||
+                                        infoForm.city.$invalid || infoForm.state.$invalid 
+                       ||infoForm.zipcode.$invalid|| 
+                       infoForm.number.$invalid || infoForm.expire.$invalid||
+                       infoForm.cvv.$invalid ||infoForm.zipcode1.$invalid "/></div>
+
+            <div class="smbutton"  onclick="hide()">cancel</div>
+            {% csrf_token %}
+        </form>
+        <div class="restPanel">
+            {% for restaurant in restaurants %}
+            <div class="row outline item">
+                <div class="col-md-2 outline"><img src="{% url 'get_restaurant_photo' restaurant.pk %}"></div>
+                <div class="col-md-6 outline ">
+                    <div><a class="resTitle" href="{% url 'restaurant_profile' restaurant.pk %}">{{ restaurant.name }}</a></div>
+                    <div class="content">{{restaurant.phoneNumber}}</div>
+                    <div class="content changeline">{{ restaurant.description }}</div>
+                </div>
+                <div class="col-md-2 outline">
+                    <div><a class="button" href="/merchant/deleterestaurant/{{restaurant.pk}}">Delete</a></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        function hide() {
+            $("#form").toggleClass("notshown");
+        }
+    </script>
+</body>
+</html>

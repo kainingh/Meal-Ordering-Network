@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>customerProfile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Lato' rel='stylesheet' type='text/css'>
+    <link href="customer.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navBar"></div>
+    <div class="leftPart col-md-4">
+        <div class="profileInfo ">
+            <div class="photo">
+
+            </div>
+        </div>
+        <ul>
+            <li onclick="show(0)">Profile</li>
+            <li onclick="show(1)">Address</li>
+            <li onclick="show(2)">Payments</li>
+            <li onclick="show(3)">Order</li>
+            <li>Other</li>
+        </ul>
+    </div>
+    <div class="rightPart col-md-8">
+        <div class="profile">
+            <div class="normalP">
+                <div class="title">USERNAME</div>
+                <div class="content">ohouha</div>
+                <div class="title">Email Address</div>
+                <div class="content">123456@CMU.com</div>
+                <div class="title">Short Bio</div>
+                <div class="content showPart" onclick="toggle(0)">fjwi weij fweo asoife</div>
+                <form class="formPart inactive">
+                    <textarea rows="4" cols="50">
+                    </textarea>
+                    <input type="button" value="cancel" onclick="toggle(0)"/>
+                    <input type="button" value="submit" />
+                </form>
+            </div>
+            <div class="normalP">
+                <div class="title">Comments</div>
+                <div class="comment">
+                    <div class="col-md-4">1</div>
+                    <div class="col-md-8">“I got the delice de pistache, croissant, pain de chocolat, and and almond croissant.”</div>
+                </div>
+            </div>
+        </div>
+        <div class="address inactive">
+            <div class="showPart">
+                <div class="add" onclick="toggle(1)">Add Address</div>
+                <div class="normalA row">
+                    <div class="title col-md-2">X</div>
+                    <div class="col-md-10">
+                        <div class="title">Home</div>
+                        <div class="content">xxx AVE</div>
+                        <div class="content">Pittsburgh,PA,XXX</div>
+                        <div class="content">412-XXX-XXX</div>
+                    </div>
+                </div>
+            </div>
+            <div class="addressForm formPart inactive">
+                <div class="title">Add Address</div>
+                <div class="line"></div>
+                <form>
+                    <div>Address (Required)</div>
+                    <input type="text"/>
+                    <div>Apt#/Suite (Optional)</div>
+                    <input type="text" />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div>City (Required)</div>
+                            <input type="text"/>
+                        </div>
+                        <div class="col-md-3">
+                            <div>State (Required)</div>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <div>Zip (Required)</div>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <div>Phone (Required)</div>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div>Name this address</div>
+                    <div class="row"></div>
+                    <div class="col-md-4">Home</div>
+                    <div class="col-md-4">Work</div>
+                    <div class="col-md-4">Other</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="button" value="Cancel" onclick="toggle(1)"/>
+                            <input type="button" value="Submit"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="payment inactive">
+            <div class="showPart" onclick="toggle(2)">
+                <div class="add">Add Cards</div>
+                <div class="normalA row">
+                    <div class="title col-md-2">X</div>
+                    <div class="col-md-10">
+                        <div class="title">Visa</div>
+                        <div class="content">**** **** 1234</div>
+                        <div class="content">Expires 02/16</div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymentForm formPart inactive">
+                <div class="title">Add Card</div>
+                <div class="line"></div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div>Card Number</div>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <div>Expiration-(MM/YY)</div>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <div>CVV-(123)</div>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <div>Billing Zip(12345)</div>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="button" value="Cancel" onclick="toggle(2)"/>
+                            <input type="button" value="Submit" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="order inactive">
+            <div class="normalA row ">
+                <div class="title col-md-2 ordername">X</div>
+                <div class="col-md-7 ordername">
+                    <div class="col-md-10 ordername">
+                        <div class="title">Chengdu Gourmet</div>
+                        <div class="date">March 28, 2016</div>
+                        <div class="date">DELIVERY to</div>
+                        <div class="menuName"><span>1</span> C2. Diced Chicken with Dried Pepper Chongqing-Style $13.95</div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="title">$30</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>Rate&Review</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="customer.js"></script>
+</body>
+</html>

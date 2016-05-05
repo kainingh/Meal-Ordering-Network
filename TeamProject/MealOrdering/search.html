@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="/static/public.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Lato|Lobster|Fjalla+One|Raleway" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="menu outline container-fluid">
+        <div class="row">
+            <div class="col-md-1 col-md-offset-9 text">Logout</div>
+            <div class="col-md-1 text">Profile</div>
+        </div>
+    </div>
+    <div class="searchPannel outline">
+
+            <form method="get" action=".">
+                {{ form.as_table }}
+                <input type="button" value="search" />
+                <!--<input type="button" value="skip" />-->
+                {% if query %}
+                <h3>Results</h3>
+
+                {% for result in page.object_list %}
+                <p>
+                    <a href="{% url 'restaurant_page' result.object.pk %}">{{ result.object.name }}</a>
+                </p>
+                {% empty %}
+                <p>No results found.</p>
+                {% endfor %}
+
+                {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+                {% endif %}
+                {% else %}
+                {# Show some example queries to run, maybe query syntax, something else? #}
+                {% endif %}
+            </form>
+
+    </div>
+</body>
+</html>

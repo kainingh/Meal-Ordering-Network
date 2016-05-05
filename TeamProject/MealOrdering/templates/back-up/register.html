@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Register</title>
+</head>
+
+<body>
+  <form method = "post" action ="{% url 'register' %}">
+    <div>
+	  <label for="id_username">Username:</label>
+	  <input id = "username" max_length = "254" name = "username"  type = "text">
+    </div>
+    <div>
+      <label for="id_password">Password:</label>
+	  <input id = "password1" max_length = "50" name = "password1"  type = "password">
+    </div>
+	<div>
+      <label for="id_password">Password:</label>
+	  <input id = "password2" max_length = "50" name = "password2"  type = "password">
+    </div>
+	<div>
+      <label for="email">Email:</label>
+	  <input id = "email" max_length = "200" name = "email"  type = "email">
+    </div>
+    <input type = "submit" value = "submit" />
+	<input type = "hidden" name = "authen" value = "merchant" />
+  {% csrf_token %}
+  </form>
+  {}
+  <form method = "post" action ="{% url 'register' %}">
+    <div>
+	  <label for="id_username">Username:</label>
+	  <input id = "username" max_length = "254" name = "username"  type = "text">
+    </div>
+    <div>
+      <label for="id_password">Password:</label>
+	  <input id = "password1" max_length = "50" name = "password1"  type = "password">
+    </div>
+	<div>
+      <label for="id_password">Password:</label>
+	  <input id = "password2" max_length = "50" name = "password2"  type = "password">
+    </div>
+	<div>
+      <label for="email">Email:</label>
+	  <input id = "email" max_length = "200" name = "email"  type = "email">
+    </div>
+    <input type = "submit" value = "submit" />
+	<input type = "hidden" name = "authen" value = "customer" />
+  {% csrf_token %}
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <title>Payment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="Payment.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="orderPanel container">
+        <div class="row">
+            <div class="col-md-8 outline">ITEM</div>
+            <div class="col-md-2 outline">QUANTITY</div>
+            <div class="col-md-2 outline">PRICE</div>
+        </div>
+        <div class="row outline">
+            <div class="col-md-8">
+                <div>CURRY CHICKEN</div>
+                <div>qweewoij qwiuqowie wqoeiiqw qwe poqwoei poiqwe poiqwe oiuqwe poipqw qwoiuq</div>
+            </div>
+            <div class="col-md-2">
+                <div>1</div>
+            </div>
+            <div class="col-md-2">
+                <div>$12</div>
+            </div>
+        </div>
+        <div class="row outline">Total:$100</div>
+        <div class="row outline">
+            <div>DELIVER TO</div>
+            <div>xxx Ave, XXX, XXX, XXX</div>
+        </div>
+    </div>
+
+    <div class="payWays">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
+                </li>
+                <li role="presentation" class="">
+                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">
+                        Profile
+                    </a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                    <div class="dropdown">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown trigger
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            ...
+                        </ul>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                    <form>
+                        <input type="text" placeholder="Card Number"/>
+                        <input type="text" placeholder="Expiration-(MM/YY)" />
+                        <input type="text" placeholder="CVV-(123)" />
+                        <input type="text" placeholder="Billing Zip-(12345)" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <input type="button" value="Cancel Order"/>
+            <input type="button" value="Submit Order"/>
+        </div>
+    </div>
+
+</body>
+</html>

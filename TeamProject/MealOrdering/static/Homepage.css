@@ -1,0 +1,293 @@
+﻿*{
+    padding:0px;
+    margin:0px;
+}
+html,body,.container {
+width:100%;
+height:100%;
+overflow:hidden;
+}
+.container{
+    display:flex;
+    flex-flow: row wrap;
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-around;
+    background:url("bg-1.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+
+}
+.title{
+    width:40%;
+    height:20%;
+    position:absolute;
+    left:30%;
+    top:10%;
+    transform:translate(-50,-50);
+    background:url("title.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+}
+.bg{
+    width:70%;
+    height:90%;
+    position:absolute;
+    left:15%;
+    top:22%;
+    transform:translate(-50,-50);
+    background:url("frame.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    z-index:1;
+}
+.left,.right{
+    z-index:2;
+    width:20%;
+    height:60%;
+    top:15%;
+    margin:auto;
+    position:relative;
+    border-radius:10px;
+    box-shadow:1px 1px 20px -5px rgba(0,0,0,0.5);  
+}
+/*.left:hover,.right:hover{
+
+    background-size:120%;
+
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+
+}*/
+.left{
+    left:10%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    background:url(left.jpg);
+    background-size:cover;
+    opacity:1;
+    background-repeat:no-repeat;
+}
+.active-right .left{
+    left:-10%;
+    visibility:hidden;
+    opacity:0;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.active-left .left{
+    left:38%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.right{
+    left:-10%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    background:url(right.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+.active-right .right{
+    left:-35%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.active-left .right{
+    left:10%;
+    visibility:hidden;
+    opacity:0;
+
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+
+.sidebar{
+    z-index:-1;
+    position:absolute;
+    width:0px;
+    height:80%;
+    right:0;
+    top:60%;
+    transform:translate(-50%,-50%);
+    overflow:hidden;
+    background:rgba(255, 255, 255, 0.8);
+
+
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.left .sidebar{
+    top:40%;
+    left:0%;
+   
+}
+.click-left .sidebar{
+    border:2px solid #c5b3a7;
+    width:120%;
+    left:-60%;
+
+}
+.click-right .sidebar{
+
+   
+   width:120%;
+   right:-180%;
+   border:2px solid rgba(72, 90, 112, 0.61);
+
+   -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.click-right .bar,.click-left .bar{
+    width:100%;
+    height:20%;
+    display:flex;
+}
+.click-right .bottombox{
+    position:absolute;
+    width:25%;
+    height:1%;
+    background:rgba(127, 177, 186, 0.5);
+    top:14%;
+    left:13%;
+
+}
+.click-left .bottombox{
+    position:absolute;
+    width:25%;
+    height:1%;
+    background:rgba(206, 197, 182, 0.85);
+    top:14%;
+    left:13%;
+}
+.click-right .content{
+    width:100%;
+    height:80%;
+}
+.cusbutton:hover{
+    cursor:pointer;
+
+}
+.cusbutton{
+    position:absolute;
+    width:30%;
+    right:-25%;
+    top:80%;
+    text-align:center;
+    padding:10% 0;
+    transform:translate(-50%,-50%);
+    background:rgba(72, 90, 112, 0.61);
+    color:white;
+    font-size:20px;
+    font-family: 'Montserrat', sans-serif;
+
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.click-right .cusbutton{
+    right:-150%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.letter{
+    width:50%;
+    height:100%;
+    text-align:center;
+    padding-top:6%;
+    font-family: 'Montserrat', sans-serif;
+    color:#485a70;
+    font-size:18px;
+}
+.letter:hover{
+    cursor:pointer;
+}
+.left .letter{
+    color:#c5b3a7;
+}
+.register{
+   display:none;
+}
+.login form,.register form{
+    padding:0 20%;
+
+}
+.login input,.register input{
+    width:90%;
+    height:40px;
+    outline:none;
+    border:0;
+    border-radius:20px;
+    font-family: 'Lato', sans-serif;
+    background:rgba(127, 177, 186, 0.2);
+
+}
+.left input{
+    background-color:rgba(206, 197, 182, 0.3);
+}
+.text{
+    font-size:15px;
+    margin:5% 0;
+    font-family: 'Lato', sans-serif;
+    color:#7fb1ba;
+}
+.left .text{
+    color:#cec5b6;
+}
+.login .button, .register .button{
+    width:90%;
+    height:40px;
+    outline:none;
+    border:none;
+    border-radius:15px;
+    margin-top:15%;
+    font-family: 'Montserrat', sans-serif;
+    background:rgba(72, 90, 112, 1);
+    color:white;
+    font-size:15px;
+}
+.left .button{
+    background-color:#c5b3a7;
+}
+.left .button:disabled{
+   color:dimgray;
+}
+.register input{
+    margin-top:5%;
+    border-radius:10px;
+    text-align:center;
+}
+.register .button{
+    margin-top:5%;
+}
+.left .cusbutton{
+    left:0;
+    top:20%;
+    background-color:rgba(206, 197, 182, 0.8);
+} 
+.click-left .cusbutton{
+    left:-120%;
+}
+.warn{
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left:10%;
+    color:orangered;
+}
+
+.error{
+	font-family: 'Montserrat', sans-serif;
+	color:red;
+}

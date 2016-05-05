@@ -1,0 +1,16 @@
+<?xml version = "1.0"?>
+
+<lists>
+	{% for list in pindingLists %}
+	<list>
+	    {% for dish in list%}
+		<name>{{ dish.dish.name }}</name>
+		<price>{{ dish.dish.price}}<price/>
+		<number>{{ dish.number }}</number>
+		{% endfor%}
+		<url>{% url 'complete_order' list.pk %}</url>
+		<money>{{ list.money }}</money>
+		<time>{{ list.time }}</time>
+	</list>
+	{% endfor %}
+</lists>
